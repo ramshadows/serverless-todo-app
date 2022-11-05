@@ -256,7 +256,7 @@ resources:
           Id: Policy
           Version: '2012-10-17'
           Statement:
-            - Sid: PublicReadForGetBucketObjects
+            - Sid: AllowPublicReadAccess
               Effect: Allow
               Principal: '*'
               Action: 's3:GetObject'
