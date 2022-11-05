@@ -104,7 +104,12 @@ functions:
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
       - Effect: Allow
         Action:
+          - cloudformation:DescribeStackResource
+        Resource: "*"
+      - Effect: Allow
+        Action:
           - xray:PutTraceSegments
+          - xray:PutTelementryRecords
         Resource:
           - '*'
 
@@ -194,7 +199,8 @@ resources:
         ResponseParameters:
           gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
           gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-          gatewayresponse.header.Access-Control-Allow-Methods: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Methods: "'DELETE,GET,OPTIONS,PATCH,PUT,POST'"
+          #gatewayresponse.header.Access-Control-Allow-Credentials: "'true'"
         ResponseType: DEFAULT_4XX
         RestApiId:
           Ref: ApiGatewayRestApi
@@ -259,6 +265,9 @@ resources:
             - Sid: AllowPublicReadAccess
               Effect: Allow
               Principal: '*'
-              Action: 's3:GetObject'
+              Action: 
+                - 's3:GetObject'
+                - 's3:PutObject'
+                - 's3:PutObjectAcl'
               Resource: 'arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*'
         Bucket: !Ref AttachmentsBucket
