@@ -17,11 +17,11 @@ export const handler = middy(
 
     return {
       statusCode: 200,
-      /*      headers: {
+            headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true
       },
-      */
+      
       body: JSON.stringify({
         uploadUrl
       })

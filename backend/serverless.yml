@@ -13,6 +13,9 @@ provider:
   name: aws
   runtime: nodejs12.x
 
+  memorySize: 512 # optional, in MB, default is 1024
+  timeout: 10 # optional, in seconds, default is 6
+
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
 
@@ -262,7 +265,7 @@ resources:
           Id: Policy
           Version: '2012-10-17'
           Statement:
-            - Sid: AllowPublicReadAccess
+            - Sid: PublicReadForGetBucketObjects
               Effect: Allow
               Principal: '*'
               Action: 

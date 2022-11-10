@@ -12,6 +12,7 @@
     "middy": "^0.24.0",
     "source-map-support": "^0.5.21",
     "uuid": "^9.0.0",
+    "jwks-rsa": "^2.1.5",
     "winston": "^3.8.2"
   },
   "devDependencies": {
