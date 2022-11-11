@@ -2,7 +2,7 @@ import 'source-map-support/register'
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { getUserId } from '../utils'
-import { generateUploadUrl } from '../../helpers/todos'
+import { generateUploadUrl } from '../../businessLogic/todos'
 import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 

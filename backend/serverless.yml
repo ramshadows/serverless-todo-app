@@ -52,34 +52,7 @@ custom:
         version: '1.0.0'
         title: serverless-api
         description: serverless-api
-    models:
-      - name: CreateTodoRequest
-        contentType: 'application/json'
-        schema:
-          required:
-            - name
-            - dueDate
-          properties:
-            name:
-              minLength: 1
-              type: string
-            dueDate:
-              type: string
-      - name: UpdateTodoRequest
-        contentType: 'application/json'
-        schema:
-          required:
-            - name
-            - dueDate
-            - done
-          properties:
-            name:
-              minLength: 1
-              type: string
-            dueDate:
-              type: string
-            done:
-              type: boolean
+    
 
 functions:
   Auth:
@@ -109,11 +82,11 @@ functions:
         Action:
           - cloudformation:DescribeStackResource
         Resource: "*"
-      - Effect: Allow
-        Action:
-          - xray:PutTraceSegments
-          - xray:PutTelementryRecords
-        Resource:
+      #- Effect: Allow
+      #  Action:
+      #    - xray:PutTraceSegments
+      #    - xray:PutTelementryRecords
+      #  Resource:
           - '*'
 
   CreateTodo:
@@ -132,10 +105,10 @@ functions:
         Action:
           - dynamodb:PutItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
-      - Effect: Allow
-        Action:
-          - xray:PutTraceSegments
-        Resource:
+      #- Effect: Allow
+      #  Action:
+      #    - xray:PutTraceSegments
+      #  Resource:
           - '*'
 
   UpdateTodo:
@@ -151,11 +124,11 @@ functions:
         Action:
           - dynamodb:UpdateItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
-      - Effect: Allow
-        Action:
-          - xray:PutTraceSegments
-        Resource:
-          - '*'
+      #- Effect: Allow
+      #  Action:
+      #    - xray:PutTraceSegments
+      #  Resource:
+      #    - '*'
 
   DeleteTodo:
     handler: src/lambda/http/deleteTodo.handler
@@ -170,10 +143,10 @@ functions:
         Action:
           - dynamodb:DeleteItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
-      - Effect: Allow
-        Action:
-          - xray:PutTraceSegments
-        Resource:
+      #- Effect: Allow
+      #  Action:
+      #    - xray:PutTraceSegments
+      #  Resource:
           - '*'
 
   GenerateUploadUrl:
@@ -188,7 +161,6 @@ functions:
       - Effect: Allow
         Action:
           - s3:*
-          - xray:PutTraceSegments
         Resource: arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*
 
 resources:

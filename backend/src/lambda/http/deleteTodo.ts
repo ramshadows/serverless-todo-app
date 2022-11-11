@@ -4,7 +4,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 
-import { deleteTodoItem } from '../../helpers/todos'
+import { deleteTodoItem } from '../../businessLogic/todos'
 import { getUserId } from '../utils'
 
 export const handler = middy(
@@ -17,7 +17,7 @@ export const handler = middy(
     await deleteTodoItem(userId, todoId)
 
     return {
-      statusCode: 204,
+      statusCode: 200,
       
       headers: {
         'Access-Control-Allow-Origin': '*',
