@@ -87,7 +87,7 @@ functions:
       #    - xray:PutTraceSegments
       #    - xray:PutTelementryRecords
       #  Resource:
-          - '*'
+      #    - '*'
 
   CreateTodo:
     handler: src/lambda/http/createTodo.handler
@@ -109,7 +109,7 @@ functions:
       #  Action:
       #    - xray:PutTraceSegments
       #  Resource:
-          - '*'
+      #    - '*'
 
   UpdateTodo:
     handler: src/lambda/http/updateTodo.handler
@@ -147,7 +147,7 @@ functions:
       #  Action:
       #    - xray:PutTraceSegments
       #  Resource:
-          - '*'
+      #    - '*'
 
   GenerateUploadUrl:
     handler: src/lambda/http/generateUploadUrl.handler
