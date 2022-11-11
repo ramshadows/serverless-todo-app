@@ -3,14 +3,14 @@
 
 
 "@aws-sdk/service-error-classification@^3.4.1":
-  "integrity" "sha512-ok1Nw5plwlTKPkyMVRJI+SVWjiitjfVveiV6zEIN87RXKPjlzQGIuHXFkDChsHT5P2TueHwzPG8lnpGBlHqBBw=="
-  "resolved" "https://registry.npmjs.org/@aws-sdk/service-error-classification/-/service-error-classification-3.197.0.tgz"
-  "version" "3.197.0"
+  "integrity" "sha512-ZZWV3AOTd8UDcfXCNoQ8v4sHaTgFxGaXWO0NHHgqFbVYr1d+8EXQiOy/v8JsY1jrfoXBWXptTOcioCTeM0xBpw=="
+  "resolved" "https://registry.npmjs.org/@aws-sdk/service-error-classification/-/service-error-classification-3.208.0.tgz"
+  "version" "3.208.0"
 
 "@aws-sdk/types@^3.4.1":
-  "integrity" "sha512-ZM6s4AIWLWeKiuigPCSbSSBn9i7s1o+/U/dRpLax3bSpH7E6PU5hEnIXEzWsIXWU1/8bmTttY8qmYEx3RCmbpw=="
-  "resolved" "https://registry.npmjs.org/@aws-sdk/types/-/types-3.197.0.tgz"
-  "version" "3.197.0"
+  "integrity" "sha512-5AuOPtY1Hdf4xoEo+voRijl3OnFm8IB+oITXl+SN2iASJv+XPnRNw/QVbIxfGeWgWhmK31F+XdjTYsjT2rx8Qw=="
+  "resolved" "https://registry.npmjs.org/@aws-sdk/types/-/types-3.208.0.tgz"
+  "version" "3.208.0"
 
 "@colors/colors@1.5.0":
   "integrity" "sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ=="
@@ -774,10 +774,10 @@
     "uuid" "8.0.0"
     "xml2js" "0.4.19"
 
-"aws-xray-sdk-core@^3.3.8", "aws-xray-sdk-core@3.3.8":
-  "integrity" "sha512-Vez/N8tyyOdQ/pf9l27qChptlHdi8zjs6lZrW31CfEYCYPXZXT0LkPiIjjIyOZz3/2s1b0Dv9WwWNiTDTPgn9w=="
-  "resolved" "https://registry.npmjs.org/aws-xray-sdk-core/-/aws-xray-sdk-core-3.3.8.tgz"
-  "version" "3.3.8"
+"aws-xray-sdk-core@^3.4.0", "aws-xray-sdk-core@3.4.0":
+  "integrity" "sha512-PH3jqjUp8fTIaRa0i6fjJxXJSR9yDwldH1Qw7nMDNAouL7txsrSM6BhrQEjcaZ2mwfU0PNx8tsFQ+2/nfNdR1w=="
+  "resolved" "https://registry.npmjs.org/aws-xray-sdk-core/-/aws-xray-sdk-core-3.4.0.tgz"
+  "version" "3.4.0"
   dependencies:
     "@aws-sdk/service-error-classification" "^3.4.1"
     "@aws-sdk/types" "^3.4.1"
@@ -786,36 +786,36 @@
     "cls-hooked" "^4.2.2"
     "semver" "^5.3.0"
 
-"aws-xray-sdk-express@3.3.8":
-  "integrity" "sha512-G2crGtD7wiMzOi4AZ3B0bIUj6niow6ThUUzYtxa/nvwyc0JtZfB80PXX7rU2G5LR9ZL9eGBAsAFgyB2oDvHgDQ=="
-  "resolved" "https://registry.npmjs.org/aws-xray-sdk-express/-/aws-xray-sdk-express-3.3.8.tgz"
-  "version" "3.3.8"
+"aws-xray-sdk-express@3.4.0":
+  "integrity" "sha512-H+hjSScPq9AGoqMhrxTnJSQ6EpQgC3y1PA8ZlTqoDUK+l/NNAeB2zprSzRGuCxZwPITVajSDjznNwhOxjp/tww=="
+  "resolved" "https://registry.npmjs.org/aws-xray-sdk-express/-/aws-xray-sdk-express-3.4.0.tgz"
+  "version" "3.4.0"
   dependencies:
     "@types/express" "*"
 
-"aws-xray-sdk-mysql@3.3.8":
-  "integrity" "sha512-AKa3bgakx9fZn4EHGDaMutIrzbUP0Su1Jm7ZjIRy39u53GGou1/i6DVg/9+Nq66srIxnJ0hiIoq6fXCk5297gw=="
-  "resolved" "https://registry.npmjs.org/aws-xray-sdk-mysql/-/aws-xray-sdk-mysql-3.3.8.tgz"
-  "version" "3.3.8"
+"aws-xray-sdk-mysql@3.4.0":
+  "integrity" "sha512-2kWkPzgNhgXH0ymNLXyssyGxWQ+DJyeKXDSYOVvt8EeHmk7qs17kY61sFfaWOhr20Cn0emZqA9AIJxaDfCUq/Q=="
+  "resolved" "https://registry.npmjs.org/aws-xray-sdk-mysql/-/aws-xray-sdk-mysql-3.4.0.tgz"
+  "version" "3.4.0"
   dependencies:
     "@types/mysql" "*"
 
-"aws-xray-sdk-postgres@3.3.8":
-  "integrity" "sha512-68BHS+sjhRc1+OYeUHJEACoO4bGSm3gq4/Fg3WNtE5SEJZ8Bi4UFj7ET85Yv27FpkQw4YDMpqQrTzMNASIQhNA=="
-  "resolved" "https://registry.npmjs.org/aws-xray-sdk-postgres/-/aws-xray-sdk-postgres-3.3.8.tgz"
-  "version" "3.3.8"
+"aws-xray-sdk-postgres@3.4.0":
+  "integrity" "sha512-TSf/76dEZgCRTPY9QOzyUg63RAUtxwC6tLU4R9ks6J6ZdmNz+XDHp7Ew5zCrsevZRHRVntm4M8nlBwwnbAnyYw=="
+  "resolved" "https://registry.npmjs.org/aws-xray-sdk-postgres/-/aws-xray-sdk-postgres-3.4.0.tgz"
+  "version" "3.4.0"
   dependencies:
     "@types/pg" "*"
 
-"aws-xray-sdk@^3.3.8":
-  "integrity" "sha512-BQ4wooQioUccRlJvarwtknraMtPKh8kjO/0NwHmDaQf0ktXJ1RX02scbNoSGSJVl+AHFBqv1fUjRRVvQkDgzQA=="
-  "resolved" "https://registry.npmjs.org/aws-xray-sdk/-/aws-xray-sdk-3.3.8.tgz"
-  "version" "3.3.8"
+"aws-xray-sdk@^3.3.3":
+  "integrity" "sha512-hvEoatqrbbdF6GVTR3qCus3eG9Gt0wOMtiPoId6HMopKIFFs0t5t/DfKNsjsjTXy6DxcPRhVT7+ZHRdQpKrDjA=="
+  "resolved" "https://registry.npmjs.org/aws-xray-sdk/-/aws-xray-sdk-3.4.0.tgz"
+  "version" "3.4.0"
   dependencies:
-    "aws-xray-sdk-core" "3.3.8"
-    "aws-xray-sdk-express" "3.3.8"
-    "aws-xray-sdk-mysql" "3.3.8"
-    "aws-xray-sdk-postgres" "3.3.8"
+    "aws-xray-sdk-core" "3.4.0"
+    "aws-xray-sdk-express" "3.4.0"
+    "aws-xray-sdk-mysql" "3.4.0"
+    "aws-xray-sdk-postgres" "3.4.0"
 
 "axios@*", "axios@^1.1.3":
   "integrity" "sha512-00tXVRwKx/FZr/IDVFt4C+f9FYairX517WoGCL6dpOntqLkZofjhu43F/Xl44UOpqa+9sLFDrG/XAnFsUYgkDA=="
