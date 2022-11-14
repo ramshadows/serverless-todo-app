@@ -4,9 +4,9 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
 import { getUserId } from '../utils'
 import { updateTodoItem } from '../../businessLogic/todos'
-import * as middy from 'middy'
-import { cors, httpErrorHandler } from 'middy/middlewares'
-
+import middy from '@middy/core'
+import httpErrorHandler from '@middy/http-error-handler'
+import cors from '@middy/http-cors'
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     console.log('Processing event: ', event)

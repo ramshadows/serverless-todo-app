@@ -4,6 +4,7 @@
   "type": "object",
   "properties": {
     "name": {
+      "minLength": 2,
       "type": "string"
     },
     "dueDate": {

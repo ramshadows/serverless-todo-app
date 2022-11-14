@@ -93,6 +93,30 @@
   "resolved" "https://registry.npmjs.org/@kwsites/promise-deferred/-/promise-deferred-1.1.1.tgz"
   "version" "1.1.1"
 
+"@middy/core@^3.6.2":
+  "integrity" "sha512-/vyvG34RIt7CTmuB/jksGkk9vs6RCoOlRFPfdQq11dHkiKlT2mm8j/jZx7gSpEhXXh9LeaEMuKPnsgWBIlGS1g=="
+  "resolved" "https://registry.npmjs.org/@middy/core/-/core-3.6.2.tgz"
+  "version" "3.6.2"
+
+"@middy/http-cors@^3.6.2":
+  "integrity" "sha512-ULsa5TKVsW31s14ctQYTB1YkoMIAGyKc0fhScft6wujL6FCg4U4OxWRVCeviCAegRgyWtYI/fxj1aa4jBgdT4g=="
+  "resolved" "https://registry.npmjs.org/@middy/http-cors/-/http-cors-3.6.2.tgz"
+  "version" "3.6.2"
+  dependencies:
+    "@middy/util" "3.6.2"
+
+"@middy/http-error-handler@^3.6.2":
+  "integrity" "sha512-2DeXNDdd56C2a7bsEqnvNZKI4un0FoIgXPpNvwyIfABDKTXwoQZptjlAoU+b4hv/T0kzSttdCkPowYobTKN61w=="
+  "resolved" "https://registry.npmjs.org/@middy/http-error-handler/-/http-error-handler-3.6.2.tgz"
+  "version" "3.6.2"
+  dependencies:
+    "@middy/util" "3.6.2"
+
+"@middy/util@3.6.2":
+  "integrity" "sha512-zjyjF5BdSNnDlZbTvfQwwuUIs3H5PpN/R3wOAipXhaGD/SjpIUBcJJPLUQHySeHoZym1FC3MJYczJDbYQWKWdg=="
+  "resolved" "https://registry.npmjs.org/@middy/util/-/util-3.6.2.tgz"
+  "version" "3.6.2"
+
 "@nodelib/fs.scandir@2.1.5":
   "integrity" "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="
   "resolved" "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
