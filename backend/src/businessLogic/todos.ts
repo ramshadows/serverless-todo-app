@@ -25,6 +25,7 @@ export async function createTodoItem(
     todoId: uuid.v4(),
     done: false,
     createdAt: new Date().toISOString(),
+    attachmentUrl: null,
     ...createGroupRequest
   })
 }
