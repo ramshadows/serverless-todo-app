@@ -29,12 +29,14 @@ export class TodosAccess {
     const result = await this.docClient
       .query({
         TableName: this.todoTable,
-        KeyConditionExpression: 'userId = :userId',
+        KeyConditionExpression: '#userId = :userId',
         ExpressionAttributeValues: {
           ':userId': userId
         },
-        ExpressionAttributeNames: { 'userId': 'userId' },
-        ScanIndexForward: false
+        ExpressionAttributeNames: { 
+          '#userId': 'userId' 
+        },
+        
       })
       .promise()
     logger.info('TODOs results', result)
@@ -106,14 +108,14 @@ export class TodosAccess {
           userId: userId,
           todoId: todoId
         },
-        UpdateExpression: 'set name=:name, dueDate=:dueDate, done=:done',
+        UpdateExpression: 'set #name=:name, dueDate=:dueDate, done=:done',
         ExpressionAttributeValues: {
           ':name': TodoUpdate.name,
           ':dueDate': TodoUpdate.dueDate,
           ':done': TodoUpdate.done
         },
         ExpressionAttributeNames: {
-          'name': 'name'
+          '#name': 'name'
         },
 
       },
