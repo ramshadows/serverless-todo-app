@@ -3,6 +3,7 @@ import { DocumentClient } from 'aws-sdk/clients/dynamodb'
 import { createLogger } from '../utils/logger'
 import { TodoItem } from '../models/TodoItem'
 import { TodoUpdate } from '../models/TodoUpdate'
+import { AttachmentUtils } from './attachmentUtils'
 
 const AWSXRay = require('aws-xray-sdk')
 
@@ -18,7 +19,8 @@ export class TodosAccess {
     private readonly s3 = new AWS.S3({ signatureVersion: 'v4' }),
     private readonly todoTable = process.env.TODOS_TABLE,
     private readonly bucketName = process.env.IMAGES_S3_BUCKET,
-    private readonly urlExpiration = process.env.SIGNED_URL_EXPIRATION
+    private readonly urlExpiration = process.env.SIGNED_URL_EXPIRATION,
+    private attachementCtrl : AttachmentUtils = new AttachmentUtils()
   ) {}
 
   async getAllTodos(userId: string): Promise<TodoItem[]> {
@@ -27,11 +29,12 @@ export class TodosAccess {
     const result = await this.docClient
       .query({
         TableName: this.todoTable,
-        KeyConditionExpression: '#userId = :userId',
+        KeyConditionExpression: 'userId = :userId',
         ExpressionAttributeValues: {
           ':userId': userId
         },
-        ExpressionAttributeNames: { '#userId': 'userId' }
+        ExpressionAttributeNames: { 'userId': 'userId' },
+        ScanIndexForward: false
       })
       .promise()
     logger.info('TODOs results', result)
@@ -52,15 +55,17 @@ export class TodosAccess {
     return todoItem
   }
 
-  async getSignedUrl(bucketKey: string): Promise<string> {
+  async getSignedUrl(todoId: string): Promise<string> {
     return this.s3.getSignedUrl('putObject', {
       Bucket: this.bucketName,
-      Key: bucketKey,
+      Key: todoId,
       Expires: this.urlExpiration
     })
   }
 
-  async updateAttachmentUrl(userId: string, todoId: string): Promise<void> {
+  async updateAttachmentUrl(userId: string, todoId: string): Promise<string> {
+    const UploadUrl = await this.attachementCtrl.getUploadUrl(todoId);
+    const attachementUrl = await this.attachementCtrl.getAttachmentUrl(todoId);
     await this.docClient
       .update({
         TableName: this.todoTable,
@@ -70,11 +75,24 @@ export class TodosAccess {
         },
         UpdateExpression: 'set attachmentUrl=:attachmentUrl',
         ExpressionAttributeValues: {
-          ':attachmentUrl': `https://${this.bucketName}.s3.amazonaws.com/${todoId}`,
+          ':attachmentUrl': attachementUrl,
+        },
+        ReturnValues: 'UPDATED'
+      },
+      function (err, data) {
+        if (err) {
+          const error = JSON.stringify(err, null, 2)
+          logger.error('=> Unable to update item. Error JSON:', error)
+        } else {
+          const updatedItem = JSON.stringify(data, null, 2)
+          logger.info('=> Successfully updated todo:', updatedItem)
         }
-      })
-      .promise()
-  }
+      }
+    )
+    .promise()
+    return UploadUrl;
+}
+
 
   async updateTodoItem(
     TodoUpdate: TodoUpdate,
@@ -88,20 +106,33 @@ export class TodosAccess {
           userId: userId,
           todoId: todoId
         },
-        UpdateExpression: 'set #name=:name, dueDate=:dueDate, done=:done',
+        UpdateExpression: 'set name=:name, dueDate=:dueDate, done=:done',
         ExpressionAttributeValues: {
           ':name': TodoUpdate.name,
           ':dueDate': TodoUpdate.dueDate,
           ':done': TodoUpdate.done
         },
         ExpressionAttributeNames: {
-          '#name': 'name'
+          'name': 'name'
+        },
+
+      },
+      function (err, data) {
+        if (err) {
+          const error = JSON.stringify(err, null, 2)
+          logger.error('=> Unable to update item. Error JSON:', error)
+        } else {
+          const updatedItem = JSON.stringify(data, null, 2)
+          logger.info('=> Successfully updated todo:', updatedItem)
         }
-      })
-      .promise()
-  }
+      }
+    )
+    .promise()
+    
+}
 
   async deleteTodoItem(userId: string, todoId: string): Promise<void> {
+    logger.info('Deleting todo item : ', { todoId, userId })
     await this.docClient
       .delete({
         TableName: this.todoTable,
@@ -113,12 +144,13 @@ export class TodosAccess {
       .promise()
   }
 
-  async deleteTodoItemAttachment(bucketKey: string): Promise<void> {
+  async deleteTodoItemAttachment(todoId: string): Promise<void> {
     await this.s3
       .deleteObject({
         Bucket: this.bucketName,
-        Key: bucketKey
+        Key: todoId
       })
       .promise()
   }
 }
+
