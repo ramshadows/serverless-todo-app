@@ -33,8 +33,8 @@ export async function generateUploadUrl(
   userId: string,
   todoId: string
 ): Promise<string> {
-  const uploadUrl = await todoAccess.getSignedUrl(todoId)
-  await todoAccess.updateAttachmentUrl(userId, todoId)
+  //const uploadUrl = await todoAccess.getSignedUrl(todoId)
+  const uploadUrl = await todoAccess.updateAttachmentUrl(userId, todoId)
 
   return uploadUrl
 }
@@ -50,6 +50,6 @@ export async function updateTodoItem(
 export async function deleteTodoItem(userId: string, todoId: string) {
   await Promise.all([
     todoAccess.deleteTodoItem(userId, todoId),
-    todoAccess.deleteTodoItemAttachment(todoId)
+    //todoAccess.deleteTodoItemAttachment(todoId)
   ])
 }

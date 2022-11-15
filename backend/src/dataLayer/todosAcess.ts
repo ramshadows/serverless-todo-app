@@ -19,7 +19,7 @@ export class TodosAccess {
     private readonly s3 = new AWS.S3({ signatureVersion: 'v4' }),
     private readonly todoTable = process.env.TODOS_TABLE,
     private readonly bucketName = process.env.IMAGES_S3_BUCKET,
-    private readonly urlExpiration = process.env.SIGNED_URL_EXPIRATION,
+    //private readonly urlExpiration = process.env.SIGNED_URL_EXPIRATION,
     private attachementCtrl : AttachmentUtils = new AttachmentUtils()
   ) {}
 
@@ -57,14 +57,14 @@ export class TodosAccess {
     return todoItem
   }
 
-  async getSignedUrl(todoId: string): Promise<string> {
+/*  async getSignedUrl(todoId: string): Promise<string> {
     return this.s3.getSignedUrl('putObject', {
       Bucket: this.bucketName,
       Key: todoId,
       Expires: this.urlExpiration
     })
   }
-
+*/
   async updateAttachmentUrl(userId: string, todoId: string): Promise<string> {
     const UploadUrl = await this.attachementCtrl.getUploadUrl(todoId);
     const attachementUrl = await this.attachementCtrl.getAttachmentUrl(todoId);
@@ -79,7 +79,7 @@ export class TodosAccess {
         ExpressionAttributeValues: {
           ':attachmentUrl': attachementUrl,
         },
-        ReturnValues: 'UPDATED'
+        ReturnValues: 'UPDATED_NEW'
       },
       function (err, data) {
         if (err) {
@@ -146,11 +146,11 @@ export class TodosAccess {
       .promise()
   }
 
-  async deleteTodoItemAttachment(todoId: string): Promise<void> {
+  async deleteTodoItemAttachment(bucketKey: string): Promise<void> {
     await this.s3
       .deleteObject({
         Bucket: this.bucketName,
-        Key: todoId
+        Key: bucketKey
       })
       .promise()
   }
