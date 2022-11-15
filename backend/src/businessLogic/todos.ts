@@ -23,10 +23,11 @@ export async function createTodoItem(
   return await todoAccess.createTodoItem({
     userId,
     todoId: uuid.v4(),
-    done: false,
     createdAt: new Date().toISOString(),
+    name: createGroupRequest.name,
+    dueDate: createGroupRequest.dueDate,
+    done: false,
     attachmentUrl: null,
-    ...createGroupRequest
   })
 }
 
